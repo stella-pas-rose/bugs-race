@@ -1,0 +1,20 @@
+{
+  "name": "bug-race",
+  "version": "1.0.0",
+  "description": "Petit projet pendant le stage et les grandes vacances visant à réaliser une course d'insects.",
+  "homepage": "https://github.com/stella-pas-rose/bugs-race#readme",
+  "bugs": {
+    "url": "https://github.com/stella-pas-rose/bugs-race/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stella-pas-rose/bugs-race.git"
+  },
+  "license": "MIT",
+  "author": "stella-pas-rose Bi0s-Lain",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
