@@ -8,7 +8,6 @@ export default class IOController {
   }
 
   registerSocket(socket) {
-    console.log(`connection ${socket.id}`);
     this.#players[socket.id] = {
       id: socket.id,
       position: 0

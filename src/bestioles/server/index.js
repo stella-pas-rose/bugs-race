@@ -15,5 +15,5 @@ const server = http.createServer(
 const io = new IOServer(server);
 const ioController = new IOController(io);
 
-io.on('connection', (socket) => ioController.registerSocket(socket) );
+io.on('connect', (socket) => ioController.registerSocket(socket) );
 server.listen(8080); 
