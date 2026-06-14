@@ -1,7 +1,7 @@
 
 export default class IOController {
   #io;
-  #players = [];
+  #players = {};
 
   constructor(io) {
     this.#io = io;
@@ -9,15 +9,33 @@ export default class IOController {
 
   registerSocket(socket) {
     console.log(`connection ${socket.id}`);
+    this.#players[socket.id] = {
+      id: socket.id,
+      position: 0
+    };
+    this.setupListeners(socket);
+    this.#io.emit('update', Object.values(this.#players));
   }
 
   setupListeners(socket) {
-    //ajoute la deconnexion
-    // est ce qu'il gere l'avancement des insectes et les condition pour gagner???
+    socket.on('avancement', () => {
+      const player = this.#players[socket.id]; 
+      player.position += 5; 
+      if ((player.position) >= 100){
+        this.#io.emit('over', {winner: player}); 
+      }
+      else{
+        this.#io.emit('update', Object.values(this.#players)); 
+      }
+    })
+    socket.on('disconnect', () => {
+      delete this.#players[socket.id];
+      this.#io.emit('update', Object.values(this.#players)); 
+    })
   };
 
-  result(){
-    // gere le classement :)
-    }
+  result() {
+    return Object.values(this.#players).sort((a, b) => b.position - a.position);
+  }
 
 }

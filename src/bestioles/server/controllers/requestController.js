@@ -4,6 +4,7 @@ import { getContentTypeFrom }  from '../contentTypeUtil.js';
 import path from 'path';
 
 const BASE = 'http://localhost/';
+
 /**
 *  define a controller to retrieve static resources
 */
@@ -14,9 +15,10 @@ export default class RequestController {
   #url;
 
   constructor(request, response) {
-    this.#request = request,
-    this.#response = response;
-    this.#url = new URL(this.request.url,BASE).pathname;   
+    this.#request = request;
+    this.#response = response; 
+    this.#url = new URL(this.request.url, BASE).pathname;
+    if (this.#url === '/') this.#url = '/index.html';   
   }
 
   get response() {
